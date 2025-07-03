@@ -1,10 +1,20 @@
 package com.example.demo.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Video {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String picture;
     private String title;
     private String author;
-
+    public Video() {
+    }
     public Video(String picture,String title,String author){
         this.picture=picture;
         this.title=title;

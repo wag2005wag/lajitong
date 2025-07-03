@@ -2,18 +2,19 @@ package com.example.demo.service;
 
 import com.example.demo.entity.Video;
 import org.springframework.stereotype.Service;
+import com.example.demo.repository.VideoRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 @Service
 public class VideoService {
-    private List<Video>Videos=new ArrayList<>();
-    public VideoService(){
-        Videos.add(new Video("src/assets/logo.png","bika","bika"));
-        Videos.add(new Video("src/assets/logo.png","kila","kila"));
+    private VideoRepository videoRepository;
+
+    public VideoService(VideoRepository videoRepository) {
+        this.videoRepository = videoRepository;
     }
 
-    public List<Video> GetVideos(){
-        return Videos;
+    public List<Video> GetVideos() {
+        return videoRepository.findAll();
     }
 }
