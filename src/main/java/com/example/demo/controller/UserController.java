@@ -23,6 +23,14 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Login failed");
         }
     }
+    @PostMapping("/assign")
+    public ResponseEntity<String> assign(@RequestBody LoginRequest request){
+        if (userService.assign(request.getUsername(), request.getPassword())) {
+            return ResponseEntity.ok("Assign successful");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Assign failed");
+        }
+    }
 }
 
 class LoginRequest {

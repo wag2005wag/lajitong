@@ -26,6 +26,17 @@ public class UserService {
         if(user.getPassword().equals(password))logger.info("用户输入的密码: {}", password);
         return user.getPassword().equals(password);
     }
+    public boolean assign(String username,String password){
+        User user=userRepository.findUser(username);
 
+        if(user!=null){
+            logger.info("数据库中存储的密码: {}", user.getPassword());
+            logger.info("用户输入的密码: {}", password);
+            return false;
+        }
+        logger.info("用户输入的密码: {}", password);
+        userRepository.insertUser(username, password);
+        return true;
+    }
     
 }

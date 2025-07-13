@@ -17,4 +17,8 @@ public class VideoService {
     public List<Video> GetVideos() {
         return videoRepository.findAll();
     }
+
+    public void updateVideos(String title,String author,String picture){
+        videoRepository.insertVideo(title,author,picture);
+    }
 }

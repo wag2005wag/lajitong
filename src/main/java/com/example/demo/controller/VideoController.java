@@ -19,5 +19,27 @@ public class VideoController {
     public ResponseEntity<List<Video>> GetVideos(){
         return ResponseEntity.ok(videoService.GetVideos());
     }
+    @PostMapping("/update")
+    public ResponseEntity<String> uploadVideos(@RequestBody VideoRequest request){
+        videoService.updateVideos(request.getTitle(), request.getAuthor(), request.getPicture());
+        return ResponseEntity.ok("upload video success");
+    }
+}
+
+class VideoRequest{
+    private String title;
+    private String author;
+    private String picture;
+
+    public String getTitle(){
+        return this.title;
+    }
+    public String getAuthor(){
+        return this.author;
+    }
+    public String getPicture(){
+        return this.picture;
+    }
+
 
 }
