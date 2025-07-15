@@ -60,6 +60,22 @@
     		<version>3.1.0</version> <!-- 最新版本，根据需要调整 -->
 		</dependency>
 		<!-- Hibernate Core -->
+		<dependency>
+    		<groupId>org.jsoup</groupId>
+    		<artifactId>jsoup</artifactId>
+    		<version>1.16.1</version>
+		</dependency>
+		<dependency>
+    		<groupId>org.apache.httpcomponents</groupId>
+    		<artifactId>httpclient</artifactId>
+    		<version>4.5.14</version>
+		</dependency>
+		<dependency>
+    		<groupId>org.projectlombok</groupId>
+    		<artifactId>lombok</artifactId>
+    		<optional>true</optional>
+		</dependency>
+
  
 <!-- Java Persistence API -->
 	</dependencies>
