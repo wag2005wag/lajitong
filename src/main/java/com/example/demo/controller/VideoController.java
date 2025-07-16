@@ -2,6 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.Video;
 import com.example.demo.service.VideoService;
+
+import jakarta.servlet.http.HttpSession;
+
 import com.example.demo.service.CrawlerService;
 import com.example.demo.service.UserService;
 
@@ -16,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.Map;
 import java.util.List;
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/api/Video")
@@ -42,8 +46,8 @@ public class VideoController {
     @PostMapping("/upload")
 public ResponseEntity<?> uploadImage(
         @RequestParam("title") String title,
-        @RequestParam("author") String author,
-        @RequestParam("file") MultipartFile file
+        @RequestParam("file") MultipartFile file,
+        HttpSession session
 ) {
     logger.info("收到上传请求");
     if (file.isEmpty()) {
@@ -74,7 +78,7 @@ public ResponseEntity<?> uploadImage(
 
         // 构建URL时使用正确的路径
         String fileUrl = "http://localhost:7777/uploads/" + newFileName;
-
+        String author=(String)session.getAttribute("username");
         videoService.updateVideos(title, author, fileUrl);
         return ResponseEntity.ok().body(Map.of("success", true, "imageUrl", fileUrl));
     } catch (IOException e) {
