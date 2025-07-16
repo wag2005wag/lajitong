@@ -46,7 +46,7 @@ public class CrawlerService {
                 continue;
             }
         }
-        videoRepository.saveAll(videos);
+        
         return videos;
 
     }
