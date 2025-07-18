@@ -10,13 +10,15 @@ public class User {
     private Long id;
     private String username;
     private String password;
+    private String url;
 
     public User(){
 
     }
-    public User(String username,String password){
+    public User(String username,String password,String url){
         this.username=username;
         this.password=password;
+        this.url=url;
     }
     public String getPassword(){
         return this.password;
@@ -24,5 +26,9 @@ public class User {
     public String getUsername(){
         return this.username;
     }
+    public String getUrl(){
+        return this.url;
+    }
+
 
 }

@@ -26,7 +26,7 @@ public class UserService {
         if(user.getPassword().equals(password))logger.info("用户输入的密码: {}", password);
         return user.getPassword().equals(password);
     }
-    public boolean assign(String username,String password){
+    public boolean assign(String username,String password,String url){
         User user=userRepository.findUser(username);
 
         if(user!=null){
@@ -35,8 +35,12 @@ public class UserService {
             return false;
         }
         logger.info("用户输入的密码: {}", password);
-        userRepository.insertUser(username, password);
+        userRepository.insertUser(username, password,url);
         return true;
     }
+    public String getUserPictrue(String username){
+        User user=userRepository.findUser(username);
+        return user.getUrl();
+    } 
     
 }
