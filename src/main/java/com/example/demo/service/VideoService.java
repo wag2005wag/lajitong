@@ -21,4 +21,8 @@ public class VideoService {
     public void updateVideos(String title,String author,String picture){
         videoRepository.insertVideo(title,author,picture);
     }
+
+    public Video GetVideoByUrl(String url){
+        return videoRepository.GetVideo(url);
+    }
 }
