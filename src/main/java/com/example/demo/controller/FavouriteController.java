@@ -1,9 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.favourite;
-import com.example.demo.entity.Video;
+import com.example.demo.entity.Passage;
 import com.example.demo.service.FavouriteService;
-import com.example.demo.service.VideoService;
+import com.example.demo.service.PassageService;
 import com.example.demo.service.UserService;
 
 import org.springframework.http.HttpStatus;
@@ -25,25 +25,26 @@ import java.util.Map;
 public class FavouriteController {
     private static final Logger logger = LoggerFactory.getLogger(FavouriteController.class);
     private final FavouriteService favouriteService;
-    private final VideoService videoService;
+    private final PassageService passageService;
 
-    public FavouriteController(FavouriteService favouriteService,VideoService videoService){
+    public FavouriteController(FavouriteService favouriteService,PassageService passageService){
         this.favouriteService=favouriteService;
-        this.videoService=videoService;
+        this.passageService=passageService;
     }
 
     @GetMapping
-    public ResponseEntity<List<Video>> getFavourite(HttpSession session){
+    public ResponseEntity<List<Passage>> getFavourite(HttpSession session){
         List<favourite>favourites=favouriteService.getFavourite((String)session.getAttribute("username"));
         logger.info("用户名{}",(String)session.getAttribute("username"));
         List<String>urls=new ArrayList<>();
         for(favourite fav:favourites){
             urls.add(fav.getUrl());
         }
-        List<Video>videos=new ArrayList<>();
+        List<Passage>videos=new ArrayList<>();
         for(String url:urls){
             logger.info("封面网址{}",url);
-            videos.add(videoService.GetVideoByUrl(url));
+            videos.add(passageService.GetPassageByUrl(url));
+            logger.info("文章ID:{}",passageService.GetPassageByUrl(url).getId());
         }
         return ResponseEntity.ok(videos);
     }

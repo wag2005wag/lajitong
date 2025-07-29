@@ -23,6 +23,10 @@ public class Passage {
         this.content=content;
     }
 
+    public Long getId(){
+        return this.id;
+    }
+
     public String getPicture(){
         return this.picture;
     }
