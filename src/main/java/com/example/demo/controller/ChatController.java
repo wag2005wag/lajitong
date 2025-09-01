@@ -25,18 +25,19 @@ public class ChatController {
         this.chatService=chatService;
     }
     @GetMapping
-    public ResponseEntity<List<chat>>getChat(int page){
-        return ResponseEntity.ok(chatService.getChat(page));
+    public ResponseEntity<List<chat>>getChat(int page,String url){
+        return ResponseEntity.ok(chatService.getChat(page,url));
     }
     @PostMapping("/add")
     public ResponseEntity<?>addChat(
         @RequestParam("content")String content,
+        @RequestParam("url")String url,
         HttpSession session
     ){
         
         String username=(String)session.getAttribute("username");
         logger.info("评论发送者:{}",username);
-        chatService.insertChat(username, content);
+        chatService.insertChat(username, content,url);
         return ResponseEntity.ok(Map.of("success", true, "message", "注册成功"));
     }
 

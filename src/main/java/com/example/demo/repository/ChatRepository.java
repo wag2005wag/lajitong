@@ -9,10 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.data.repository.query.Param;
 import java.util.List;
 public interface ChatRepository extends JpaRepository<chat, Long> {
-    @Query(value="select * from chat order by id asc limit :page,10",nativeQuery = true)
-    List<chat> getChat(@Param("page") int page);
+    @Query(value="select * from chat where chat.url=:url order by id asc limit :page,10",nativeQuery = true)
+    List<chat> getChat(@Param("page") int page,@Param("url")String url);
     @Modifying
     @Transactional
-    @Query(value="insert into chat(username,content) values(:username,:content)",nativeQuery = true)
-    void insertChat(@Param("username") String username,@Param("content") String content);
+    @Query(value="insert into chat(username,content,url) values(:username,:content,:url)",nativeQuery = true)
+    void insertChat(@Param("username") String username,@Param("content") String content,@Param("url")String url);
 }

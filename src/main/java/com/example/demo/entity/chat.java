@@ -10,18 +10,23 @@ public class chat{
     private Long id;
     private String username;
     private String content;
+    private String url;
     public chat(){
 
     }
-    public chat(String author,String content){
-        this.username=author;
+    public chat(String username,String content,String url){
+        this.username=username;
         this.content=content;
+        this.url=url;
     }
 
-    String getUsername(){
+    public String getUsername(){
         return this.username;
     }
-    String getContent(){
+    public String getContent(){
         return this.content;
+    }
+    public String getUrl(){
+        return this.url;
     }
 }
